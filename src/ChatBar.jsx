@@ -11,4 +11,4 @@ class ChatBar extends Component {
   }
 }
 
-export {ChatBar};
+export default ChatBar;

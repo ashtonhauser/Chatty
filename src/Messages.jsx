@@ -4,14 +4,14 @@ class MessageUser extends Component {
   render() {
     return (
       <div className="message">
-        <span className="message-username">Holo: </span>
-        <span className="message-content">I wont be impressed with technology until I can download food.</span>
+        <span className="message-username">{this.props.username}: </span>
+        <span className="message-content">{this.props.content}</span>
       </div>
     )
   }
 }
 
-class MessageSystem extends Component {
+/* class MessageSystem extends Component {
   render() {
     return (
       <div className="message system">
@@ -19,9 +19,8 @@ class MessageSystem extends Component {
       </div>
     )
   }
-}
+} */
 
 export {
-  MessageSystem,
   MessageUser
 };
