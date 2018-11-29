@@ -25,11 +25,12 @@ class App extends Component {
       if (!this.state.messageValue) {
         alert('Message Field Cannot be Left Blank!');
       } else {
-        this.state.allMsgs.push({
-          id: this.state.allMsgs.length + 1,
-          username: this.state.nameValue,
-          content: this.state.messageValue
-        })
+        if (this.ws.readyState === 1) {
+          this.ws.send(JSON.stringify({
+            name: this.state.nameValue,
+            message: this.state.messageValue
+          }));
+        };
         this.setState({ messageValue: "" });
       }
     }
@@ -40,17 +41,11 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.ws = new WebSocket('ws://localhost:3001');
     console.log("componentDidMount <App />");
-    setTimeout(() => {
-      console.log("Simulating incoming message");
-      // Add a new message to the list of messages in the data store
-      // Update the state of the app component.
-      // Calling setState will trigger a call to render() in App and all child components.
-    }, 3000);
   }
 
   render() {
-    console.log(this.state.allMsgs);
     return (<div className="app-container">
       <nav className="navbar">
         <a href="/" className="navbar-brand">Chatty</a>

@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
+const wsServer = require('./chattyServer/server.js');
 
 new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
