@@ -22,12 +22,16 @@ class App extends Component {
       if (!this.state.nameValue) {
         this.state.nameValue = "Anonymous";
       }
-      this.state.allMsgs.push({
-        id: this.state.allMsgs.length + 1,
-        username: this.state.nameValue,
-        content: this.state.messageValue
-      })
-      this.setState({ messageValue: "" });
+      if (!this.state.messageValue) {
+        alert('Message Field Cannot be Left Blank!');
+      } else {
+        this.state.allMsgs.push({
+          id: this.state.allMsgs.length + 1,
+          username: this.state.nameValue,
+          content: this.state.messageValue
+        })
+        this.setState({ messageValue: "" });
+      }
     }
   }
 
