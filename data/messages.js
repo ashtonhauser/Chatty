@@ -1,4 +1,4 @@
-export default [
+const data = [
   {
     id: 1,
     username: "Bob",
@@ -10,3 +10,5 @@ export default [
     content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
   }
 ];
+
+export default data;
