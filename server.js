@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
-=======
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
-const wsServer = require('./chattyServer/server.js');
->>>>>>> 0bda9eb5a5a13689eb67cfb4b0cd8a3b21e2f2bf
 
 new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,

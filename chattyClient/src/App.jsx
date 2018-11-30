@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       allMsgs: [],
-      nameValue: '',
+      nameValue: 'Anonymous',
       messageValue: '',
       updatedNameValue: '',
       updatedMessageValue: ''
@@ -17,25 +17,31 @@ class App extends Component {
   }
 
   submitMessage = (event) => {
+    const id = uuid();
     if (event.key === 'Enter') {
-      if (!this.state.nameValue) {
-        this.state.nameValue = "Anonymous";
-      }
+      // if (!this.state.updatedNameValue) {
+      //   this.setState({
+      //     updatedNameValue: 'Anonymous'
+      //   })
+      // }
       if (!this.state.messageValue) {
         alert('Message Field Cannot be Left Blank!');
       } else {
         if (this.ws.readyState === 1) {
           this.ws.send(JSON.stringify({
-            id: uuid,
+            id: id,
             username: this.state.nameValue,
             content: this.state.messageValue
           }));
-
         };
-        //display message
         this.setState({
           updatedNameValue: this.state.nameValue,
-          updatedMessageValue: this.state.messageValue
+          updatedMessageValue: this.state.messageValue,
+          allMsgs: this.state.allMsgs.concat({
+            id: id,
+            username: this.state.nameValue,
+            content: this.state.messageValue
+          })
         })
         this.setState({ messageValue: "" });
       }
@@ -55,7 +61,7 @@ class App extends Component {
     this.ws.onmessage = (event) => {
       const messageData = JSON.parse(event.data);
       this.setState({ allMsgs: this.state.allMsgs.concat(messageData) });
-  }
+    }
 
     console.log("componentDidMount <App />");
   }
@@ -67,6 +73,7 @@ class App extends Component {
       </nav>
       <main className="message-container">
         <MessageList
+          messages={this.state.allMsgs}
           username={this.state.updatedNameValue}
           content={this.state.updatedMessageValue}
         />
