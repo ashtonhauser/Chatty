@@ -19,16 +19,12 @@ class App extends Component {
   submitMessage = (event) => {
     const id = uuid();
     if (event.key === 'Enter') {
-      // if (!this.state.updatedNameValue) {
-      //   this.setState({
-      //     updatedNameValue: 'Anonymous'
-      //   })
-      // }
       if (!this.state.messageValue) {
         alert('Message Field Cannot be Left Blank!');
       } else {
         if (this.ws.readyState === 1) {
           this.ws.send(JSON.stringify({
+            type: 'postMessage',
             id: id,
             username: this.state.nameValue,
             content: this.state.messageValue
@@ -38,6 +34,7 @@ class App extends Component {
           updatedNameValue: this.state.nameValue,
           updatedMessageValue: this.state.messageValue,
           allMsgs: this.state.allMsgs.concat({
+            type: 'postMessage',
             id: id,
             username: this.state.nameValue,
             content: this.state.messageValue
