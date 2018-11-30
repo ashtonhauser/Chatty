@@ -47,7 +47,10 @@
   "dependencies": {
     "react": "15.4.2",
     "react-dom": "15.4.2",
+<<<<<<< HEAD
     "uuid": "^3.3.2",
+=======
+>>>>>>> 0bda9eb5a5a13689eb67cfb4b0cd8a3b21e2f2bf
     "ws": "^6.1.2"
   }
 }
