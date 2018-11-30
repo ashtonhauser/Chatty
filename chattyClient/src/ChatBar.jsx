@@ -10,7 +10,7 @@ class ChatBar extends Component {
     return(
       <footer className="chatbar">
         <input
-        onChange={this.props.handleChangeName}
+        onChange={this.props.nameChange}
         value={this.props.nameValue}
         className="chatbar-username"
         placeholder="Your Name (Optional)" />
