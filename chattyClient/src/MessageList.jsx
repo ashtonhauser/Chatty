@@ -11,6 +11,12 @@ class MessageList extends Component {
           username={message.username}
           content={message.content} />
         })}
+        {this.props.notifications.map((singleNotif) => {
+          return <MessageSystem
+          key={singleNotif.id}
+          oldUsername={singleNotif.oldUsername}
+          newUsername={singleNotif.newUsername} />
+        })}
         </main>
     )
   }

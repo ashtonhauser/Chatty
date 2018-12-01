@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-function MessageUser(props){
+function MessageUser(props) {
   if (props.username && props.content) {
     return (
       <div className="message">
@@ -13,16 +13,19 @@ function MessageUser(props){
   }
 }
 
-/* class MessageSystem extends Component {
-  render() {
-    return (
-      <div className="message system">
-        Anonymous1 changed their name to nomnom.
-      </div>
-    )
-  }
-} */
+ function MessageSystem(props) {
+   if (props.oldUsername && props.newUsername) {
+     return (
+       <div className="message system">
+         <span>**** {props.oldUsername} changed their name to {props.newUsername} ****</span>
+       </div>
+     )
+   } else {
+     return null;
+   }
+}
 
 export {
-  MessageUser
+  MessageUser,
+  MessageSystem
 };

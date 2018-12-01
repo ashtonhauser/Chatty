@@ -22,13 +22,24 @@ wss.on('connection', (ws) => {
   ws.on('open', () => console.log('Websocket Open'));
   ws.on('message', function(data) {
     const parsedData = JSON.parse(data);
-    parsedData.type = 'incomingMessage';
-    const stringifiedData = JSON.stringify(parsedData);
-    wss.clients.forEach(function each(client) {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(stringifiedData);
-      }
-    });
+    if (parsedData.type = 'postMessage') {
+      parsedData.type = 'incomingMessage';
+      const stringifiedMessageData = JSON.stringify(parsedData);
+      wss.clients.forEach(function each(client) {
+        if (client !== ws && client.readyState === WebSocket.OPEN) {
+          client.send(stringifiedMessageData);
+        }
+      });
+    }
+    if (parsedData.type = 'postNotification') {
+      parsedData.type = 'incomingNotification'
+      const stringifiedNotificationData = JSON.stringify(parsedData)
+      wss.clients.forEach(function each(client) {
+        if (client !== ws && client.readyState === WebSocket.OPEN) {
+          client.send(stringifiedNotificationData);
+        }
+      })
+    }
   })
 
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
