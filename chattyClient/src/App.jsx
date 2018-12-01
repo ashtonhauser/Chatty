@@ -65,7 +65,12 @@ class App extends Component {
         }))
       }
       this.setState({
-
+        allNotifs: this.state.allNotifs.concat({
+          type: 'postNoification',
+          id: id,
+          oldUsername: oldUsername,
+          newUsername: this.state.nameValue
+        })
       })
     }
   }

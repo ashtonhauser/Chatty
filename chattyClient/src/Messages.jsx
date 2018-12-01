@@ -14,7 +14,7 @@ function MessageUser(props) {
 }
 
  function MessageSystem(props) {
-   if (props.oldUsername && props.newUsername) {
+   if (props.oldUsername && props.newUsername && props.oldUsername !== 'Anonymous') {
      return (
        <div className="message system">
          <span>**** {props.oldUsername} changed their name to {props.newUsername} ****</span>
